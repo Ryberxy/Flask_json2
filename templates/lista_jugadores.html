@@ -4,7 +4,7 @@
 <h2>Resultados</h2>
 
 <form method="POST" action="{{ url_for('lista_jugadores') }}">
-    <input type="text" name="nombre" placeholder="Nombre" value="{{ nombre }}"> <!-- Primer criterio - buscar por nombre de jugador -->
+    <input type="text" name="nombre" placeholder="Nombre" value="{{ nombre }}"> <!-- Primer criterio - buscar por nombre de jugador; Usamos value para que el formulario recuerde la búsqueda anterior -->
     <select name="equipo">
         <option value="">--Todos los equipos--</option <!-- Segundo criterio - Buscar por nombre de equipo en lista desplegable -->
         {% for equipo in equipos %}
