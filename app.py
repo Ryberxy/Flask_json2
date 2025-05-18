@@ -23,27 +23,31 @@ def obtener_jugadores():
 def portada():
     return render_template("portada.html")
 
-@app.route('/jugadores', methods=["GET"])
+@app.route('/jugadores', methods=["GET", "POST"])
 def jugadores():
-    return render_template("jugadores.html", equipos=equipos_disponibles)
+    jugadores_filtrados = []
+    nombre_filtro = ""
+    equipo_filtro = ""
+    busqueda_realizada = False
 
-@app.route('/listajugadores', methods=["POST"])
-def lista_jugadores():
-    jugadores = obtener_jugadores()
-    nombre_filtro = request.form.get("nombre", "").strip().lower()
-    equipo_filtro = request.form.get("equipo", "").strip()
+    if request.method == "POST":
+        busqueda_realizada = True
+        nombre_filtro = request.form.get("nombre", "").strip().lower()
+        equipo_filtro = request.form.get("equipo", "").strip()
+        jugadores_filtrados = obtener_jugadores()
 
-    if nombre_filtro:
-        jugadores = [j for j in jugadores if j["nombre"].lower().startswith(nombre_filtro)]
+        if nombre_filtro:
+            jugadores_filtrados = [j for j in jugadores_filtrados if j["nombre"].lower().startswith(nombre_filtro)]
+        if equipo_filtro:
+            jugadores_filtrados = [j for j in jugadores_filtrados if j["equipo"] == equipo_filtro]
 
-    if equipo_filtro:
-        jugadores = [j for j in jugadores if j["equipo"] == equipo_filtro]
-
-    return render_template("lista_jugadores.html",
-                           jugadores=jugadores,
-                           nombre=nombre_filtro,
+    return render_template("jugadores.html",
                            equipos=equipos_disponibles,
-                           equipo_seleccionado=equipo_filtro)
+                           jugadores=jugadores_filtrados,
+                           nombre=nombre_filtro,
+                           equipo_seleccionado=equipo_filtro,
+                           busqueda_realizada=busqueda_realizada)
+
 
 @app.route('/jugador/<identificador>')
 def detalle(identificador):
