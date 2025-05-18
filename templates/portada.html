@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Portada{% endblock %}
+{% block content %}
+<div style="text-align:center;">
+    <a href="{{ url_for('jugadores') }}">
+        <img src="{{ url_for('static', filename='img/portada.webp') }}" alt="Portada" style="max-width: 90%;">
+    </a>
+</div>
+{% endblock %}

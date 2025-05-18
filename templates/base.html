@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>PRIMERA DIVISIÓN ESPAÑOLA</h1>
+        <nav>
+            <a href="{{ url_for('portada') }}">Inicio</a>
+            <a href="{{ url_for('jugadores') }}">Jugadores</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

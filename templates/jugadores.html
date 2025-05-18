@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Buscar Jugadores{% endblock %}
+{% block content %}
+<h2>Buscar jugadores</h2>
+<form method="POST" action="{{ url_for('lista_jugadores') }}">
+    <input type="text" name="nombre" placeholder="Nombre">
+    <select name="equipo">
+        <option value="">--Todos los equipos--</option>
+        {% for equipo in equipos %}
+            <option value="{{ equipo }}">{{ equipo }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Buscar</button>
+</form>
+{% endblock %}

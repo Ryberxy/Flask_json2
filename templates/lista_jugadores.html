@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Resultados de búsqueda{% endblock %}
+{% block content %}
+<h2>Resultados</h2>
+
+<form method="POST" action="{{ url_for('lista_jugadores') }}">
+    <input type="text" name="nombre" placeholder="Nombre" value="{{ nombre }}">
+    <select name="equipo">
+        <option value="">--Todos los equipos--</option>
+        {% for equipo in equipos %}
+            <option value="{{ equipo }}" {% if equipo == equipo_seleccionado %}selected{% endif %}>{{ equipo }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if jugadores %}
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Posición</th>
+        <th>Detalles</th>
+    </tr>
+    {% for jugador in jugadores %}
+    <tr>
+        <td>{{ jugador.nombre }}</td>
+        <td>{{ jugador.posicion }}</td>
+        <td><a href="{{ url_for('detalle', identificador=jugador.id) }}">Detalle</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No se han encontrado jugadores.</p>
+{% endif %}
+<a href="{{ url_for('jugadores') }}">Volver al buscador</a>
+{% endblock %}

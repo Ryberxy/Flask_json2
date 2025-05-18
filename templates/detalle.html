@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Detalle del Jugador{% endblock %}
+{% block content %}
+<div class="detalle-container">
+    <h2>{{ jugador.nombre }}</h2>
+    <div class="detalle-box">
+        <ul>
+            <li><strong>Equipo:</strong> {{ jugador.equipo }}</li>
+            <li><strong>Posición:</strong> {{ jugador.detalles.posicion }}</li>
+            <li><strong>Nacionalidad:</strong> {{ jugador.nacionalidad }}</li>
+            <li><strong>Fecha de nacimiento:</strong> {{ jugador.fechaNacimiento }}</li>
+            <li><strong>Altura:</strong> {{ jugador.detalles.altura }} m</li>
+            <li><strong>Pierna hábil:</strong> {{ jugador.detalles.pieHabil }}</li>
+            <li><strong>Valor:</strong> {{ jugador.detalles.valor }} millones</li>
+            <li><strong>Capitán:</strong> {{ 'Sí' if jugador.detalles.capitan else 'No' }}</li>
+        </ul>
+        <a href="{{ url_for('jugadores') }}" class="volver-link">Volver al buscador</a>
+    </div>
+</div>
+{% endblock %}
