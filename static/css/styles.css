@@ -86,7 +86,19 @@ h3 {
 }
 
 .content {
-    padding: 2em 1em 0;
+    background-image: url('/static/img/portada.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-repeat: no repeat;
+}
+
+body {
+    background-image: url('/static/img/portada.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-repeat: no repeat;
 }
 
 .post {
